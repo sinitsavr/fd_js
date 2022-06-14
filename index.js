@@ -1,14 +1,19 @@
 "use strict";
 
-const site = {
-  title: 'green site',
-  headers:['Header 1','Header 2','Header 3'],
-  showHeaders(){
-    console.log(this)
-    this.headers.forEach((header)=>{
-      console.log(`${header} | ${this.title}`)
-    });
-  }
+const f1 = function (...restArguments){
+  console.log(restArguments)
 }
 
-site.showHeaders();
+const f2 = (num1,...numbers)=>{
+  console.log(numbers)
+}
+
+
+f1(1,1,1,1)
+f2(2,2,2,2)
+
+const sumNum = (...num)=> num.reduce((acum,vol)=>acum+vol);
+
+sumNum(3,6,8,7);
+
+
