@@ -1,54 +1,45 @@
 "use strict";
 
-
-class User{
-  #isBan;
-  constructor (fname, sname){
-    this.fname = fname;
-    this.sname = sname;
-    this._isBan = false;
+class 
+Squirrel{
+  constructor (name, color){
+   this.name = name;
+   this.color = color;
   }
-  getFullName(){
-    return `${this.fname} ${this.sname}`;
-  }
-  static isUser(obj){
-    return obj instanceof User;
-  }
-  getisBan(){
-    return this._isBan;
+  jump(){
+    return `${this.name} is jumping.`
   }
 };
-
-class Moderator extends User{
-  constructor(fname, sname, permission){
-    super (fname, sname);
-    this.permission = permission;
-  }
-};
-const mod1 = new Moderator('Elon','Musk', true);
-
-class Admin extends Moderator{
-  constructor(fname, snama, permission){
-    super (fname, snama, permission);
-  }
-  ban(obj){
-    if(User.isUser(obj)===false){
-      throw new TypeError('must be user!');
-    }
-    obj._isBan=true;
-  }
-  unBan(obj){
-    if(User.isUser(obj)===false){
-      throw new TypeError('must be user!');
-    }
-      obj._isBan=false;
-  }
-};
-const admin = new Admin('Elin', 'Dusk', true);
-
-class Editor extends Moderator{
-  constructor(fname, sname, permission, email){
-    super(fname,sname,permission);
-    this.email = email;
-  }
+class FlySquirrel extends Squirrel{
+  constructor(name, color, maxDisatanse){
+  super(name,color); 
+  this.maxDistanse = maxDistanse;
 }
+  get maxDistanse(){
+    return this._maxDistanse
+  }
+  set maxDistanse(value){
+  if(value>90 || value<70){
+    throw new RangeError('error');
+  } 
+  this._maxDistanse = value;
+}
+ fly(dist){
+  return `${this.name} is ${dist>this._maxDistanse? 'not' : ''} flying at ${dist}.`;
+}
+};
+
+class MagicFlySquirrel extends FlySquirrel{
+  constructor(name, color, maxDisatanse, song){
+    super(name, color, maxDisatanse);
+    this.song = ['song1', 'song2', 'song3'] ;
+  }
+  singsong(){
+    return
+    `${this.name} is singing ${this.song[0,1,2]}`
+  }
+};
+  
+  
+  const mfsq = new MagicFlySquirrel('belka', 'red', 80,['kaluna','smereka', 'lypa']);
+console.log(mfsq(singsong(1)))
